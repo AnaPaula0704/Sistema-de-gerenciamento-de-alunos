@@ -6,7 +6,6 @@ Este projeto implementa um sistema de gerenciamento de alunos desenvolvido em Ja
 ## Funcionalidades
 - Cadastro de Alunos: Permite adicionar alunos com informações como nome, idade, matrícula, notas e disciplinas.
 - Cálculo de Médias: Calcula a média das notas dos alunos para determinar sua situação acadêmica.
-- Aprovação/Reprovação: Classifica os alunos como aprovados (média ≥ 6) ou reprovados (média < 6).
 - Atualização de Notas: Permite atualizar as notas de um aluno, seja da Nota 1 ou Nota 2.
 - Controle de Frequência: Monitora a frequência dos alunos; frequência abaixo de 75% resulta em reprovação.
 - Gerenciamento de Disciplinas: Associa alunos às disciplinas em que estão matriculados.
