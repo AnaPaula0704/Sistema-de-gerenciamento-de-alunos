@@ -19,6 +19,7 @@ public class AlunosTeste {
             System.out.println("3 - Buscar aluno por matrícula");
             System.out.println("4 - Atualizar nota de uma disciplina");
             System.out.println("5 - Atualizar faltas de uma disciplina");
+            System.out.println("6 - Remover aluno por matrícula");
             System.out.println("0 - Sair");
             System.out.print("\nEscolha uma opção: ");
  
@@ -47,10 +48,13 @@ public class AlunosTeste {
                 case 5:
                     atualizarFaltasDisciplina();
                     break;
+                case 6:
+                    removerAlunoPorMatricula();
+                    break;
                 case 0:
                     System.out.println("Encerrando o programa...");
                     break;
-                default:  // nenhuma das opções
+                default:
                     System.out.println("Opção inválida.");
             }
         } while (opcao != 0);
@@ -61,7 +65,7 @@ public class AlunosTeste {
         String nome = leia.nextLine();
         System.out.print("Idade: ");
         int idade = leia.nextInt();
-        leia.nextLine(); // limpa buffer(limpar memória para deixar o programa mais rápido)
+        leia.nextLine(); // limpa buffer
  
         String matricula = "" + contadorMatricula++;
         Aluno novoAluno = new Aluno(nome, idade, matricula);
@@ -81,15 +85,14 @@ public class AlunosTeste {
  
     private static void listarTodosAlunos() {
         if (alunos.isEmpty()) {
-            System.out.println("\nNenhum aluno cadastrado!");
+            System.out.println("\nAinda não há nenhum aluno cadastrado!");
         } else {
-            for (int x = 0; x < alunos.size(); x++) {
-                alunos.get(x).imprimirAluno();
+            for (Aluno aluno : alunos) {
+                aluno.imprimirAluno();
                 System.out.println("\n--------------------------------------------------");
             }
         }
     }
- 
  
     private static void buscarAlunoPorMatricula() {
         if (alunos.isEmpty()) {
@@ -97,7 +100,7 @@ public class AlunosTeste {
             return;
         }
  
-        System.out.print("\nDigite a matrícula: ");
+        System.out.print("Digite a matrícula: ");
         String matricula = leia.nextLine();
  
         Aluno aluno = encontrarAlunoPorMatricula(matricula);
@@ -127,6 +130,11 @@ public class AlunosTeste {
             System.out.print("Digite o código da disciplina: ");
             int codigo = leia.nextInt();
             leia.nextLine(); // limpa buffer
+ 
+            if (aluno.getDisciplinas().get(codigo) == null) {
+                System.out.println("Código de disciplina inválido.");
+                return;
+            }
  
             System.out.print("Deseja atualizar (1) só nota 1, (2) só nota 2 ou (3) as duas notas? ");
             int opc = leia.nextInt();
@@ -174,12 +182,36 @@ public class AlunosTeste {
             int codigo = leia.nextInt();
             leia.nextLine(); // limpa buffer
  
+            if (aluno.getDisciplinas().get(codigo) == null) {
+                System.out.println("Código de disciplina inválido.");
+                return;
+            }
+ 
             System.out.print("Digite o número de faltas: ");
             int novasFaltas = leia.nextInt();
             leia.nextLine();
  
             aluno.atualizarFaltas(codigo, novasFaltas);
             System.out.println("Faltas atualizadas.");
+        } else {
+            System.out.println("Aluno não encontrado.");
+        }
+    }
+ 
+    private static void removerAlunoPorMatricula() {
+        if (alunos.isEmpty()) {
+            System.out.println("\nAinda não há nenhum aluno cadastrado!");
+            return;
+        }
+ 
+        System.out.print("Digite a matrícula do aluno que deseja remover: ");
+        String matricula = leia.nextLine();
+ 
+        Aluno alunoParaRemover = encontrarAlunoPorMatricula(matricula);
+ 
+        if (alunoParaRemover != null) {
+            alunos.remove(alunoParaRemover);
+            System.out.println("Aluno removido com sucesso.");
         } else {
             System.out.println("Aluno não encontrado.");
         }
