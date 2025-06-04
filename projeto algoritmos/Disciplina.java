@@ -68,4 +68,3 @@ public class Disciplina {
         System.out.println("    Frequência: " + calcularFrequencia() + "%");
     }
 }
- 
