@@ -52,10 +52,10 @@ public class Aluno {
     }
  
     public void imprimirAluno() {
-        System.out.println("\nMatrícula: " + matricula);
+        System.out.println("Matrícula: " + matricula);
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade);
-        System.out.println("\nDisciplinas:\n");
+        System.out.println("Disciplinas:");
         for (Disciplina disciplina : disciplinas.values()) {
             disciplina.imprimirDisciplina();
         }
